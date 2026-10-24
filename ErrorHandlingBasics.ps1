@@ -16,9 +16,14 @@
 # Shows all system messages in English
 [System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
 
+
+$dataset = ".\mydata.txt"
+# $dataset = $null
+
 try {
     # To catch the error, it needs the ErrorAction here!
-    Get-Content mydata.txt -ErrorAction Stop
+    Get-Content $dataset -ErrorAction Stop
+    Write-Host "All items have been processed" -ForegroundColor Green
 }
 catch [System.Management.Automation.ItemNotFoundException]{
     Write-Error "File is missing."
@@ -27,5 +32,5 @@ catch {
     Write-Error "Unexpected error: $($_.Exception.Message)"
 }
 finally {
-    Write-Host "Nothing was processed, script has ended."
+    Write-Host "Script finished." -ForegroundColor Cyan
 }
