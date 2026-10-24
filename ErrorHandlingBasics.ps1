@@ -33,7 +33,7 @@ catch [System.Management.Automation.ItemNotFoundException]{
 catch {
     Write-Error "Unexpected error: $($_.Exception.Message)"
 }
-# Runs always, no matter if error happens or not
+# Runs always, no matter if error gets thrown or not
 finally {
     Write-Host "Script finished." -ForegroundColor Cyan
 }
