@@ -16,7 +16,7 @@
 # Shows all system messages in English
 [System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
 
-
+# Rename value to test the Try / Catch functionality
 $dataset = ".\mydata.txt"
 # $dataset = $null
 
