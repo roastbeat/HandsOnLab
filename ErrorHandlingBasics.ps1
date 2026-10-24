@@ -11,6 +11,21 @@
 #
 # (c) Learn PowerShell Version 1.0.9 Offline Course App
 
+# -----------------------------------------------------
 
-# Your code starts here!
+# Shows all system messages in English
+[System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
 
+try {
+    # To catch the error, it needs the ErrorAction here!
+    Get-Content mydata.txt -ErrorAction Stop
+}
+catch [System.Management.Automation.ItemNotFoundException]{
+    Write-Error "File is missing."
+}
+catch {
+    Write-Error "Unexpected error: $($_.Exception.Message)"
+}
+finally {
+    Write-Host "Nothing was processed, script has ended."
+}
