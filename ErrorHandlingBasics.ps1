@@ -25,12 +25,15 @@ try {
     Get-Content $dataset -ErrorAction Stop
     Write-Host "All items have been processed" -ForegroundColor Green
 }
+# Specific error catch
 catch [System.Management.Automation.ItemNotFoundException]{
     Write-Error "File is missing."
 }
+# Generic error catch
 catch {
     Write-Error "Unexpected error: $($_.Exception.Message)"
 }
+# Runs always, no matter if error happens or not
 finally {
     Write-Host "Script finished." -ForegroundColor Cyan
 }
