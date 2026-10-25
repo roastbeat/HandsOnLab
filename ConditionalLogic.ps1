@@ -23,7 +23,7 @@
 
 
 # Requesting for user data --> path and environment name
-$path = Read-Host("Set path")
+$path = Read-Host("Set path [ . ]") # Use dot for current directory --> easiest valid path to test script 
 $env = Read-Host("Set environment name [dev | test | prod]")
 $riskScore = [Int32](Read-Host("Set risk score [10 (low risk) - 100 (max. risk)]"))
 
@@ -53,7 +53,7 @@ if ($riskScore -ge [Int32]10 -and $riskScore -le [Int32]30) {
   return
 }
 
-# Cases for the environment and its assigned behaviour
+# Cases for the environment and its assigned message
 switch ($env) {
   "dev" { 
     Write-Host "[DEV] Running dev pipeline..." -ForegroundColor Cyan
