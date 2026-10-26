@@ -16,3 +16,24 @@
 # Shows all system messages in English
 [System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
 
+$FilePath = ".\mydata.txt"
+
+if (-not (Test-Path $FilePath)) {
+    Write-Warning "Path does not exist, try again"
+    return
+}
+
+try {
+    $Data = Get-Content $FilePath -ErrorAction Stop
+    # Write-Host $Data -ForegroundColor Cyan
+    for ($i = 0; $i -lt $Data.Count; $i++) {
+        Write-Host "$($i + 1). $($Data[$i])" -ForegroundColor Magenta
+    }
+}
+catch [System.IO.FileNotFoundException] {
+    Write-Host "Missing file"
+}
+finally {
+    Write-Host "Script finished"
+}
+
