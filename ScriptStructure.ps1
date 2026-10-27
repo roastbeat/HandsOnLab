@@ -19,18 +19,29 @@
 #Requires -Version 7.0
 <#
 .SYNOPSIS
-  Short description (What the script does)
+  Writes content from file into an object.
   .DESCRIPTION
-  Explain in detail, what the script does
+  Imports data from a file and creates an object with the content.
 #>
 
+
 #region Configuration
-# Import data, paths, files here and check if they're valid.
+$DefaultPath = ".\mydata.txt"
+
+$FilePath = Read-Host("Set the path")
+
+# Guard clause, where a default file when path is missing
+if ( -not (Test-Path $FilePath)) {
+  Write-Host "Path does not exist, default is used." -ForegroundColor Cyan
+  $FilePath = $DefaultPath
+}
+
+$Content = Get-Content $FilePath
 #endregion
 
 
 #region Main Logic
-# Here is where the main logic goes after the input was checked valid!
+$Content
 #endregion
 
 
