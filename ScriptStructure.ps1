@@ -13,17 +13,18 @@
 
 # -----------------------------------------------------
 
-# Shows all system messages in English
-[System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
-
 #Requires -Version 7.0
 <#
 .SYNOPSIS
-  Writes content from file into an object.
-  .DESCRIPTION
-  Imports data from a file and creates an object with the content.
+Writes content from file into an object.
+.DESCRIPTION
+Imports data from a file and creates an object with the content.
 #>
 
+Set-StrictMode -Version Latest
+
+# Shows all system messages in English
+[System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
 
 #region Configuration
 $DefaultPath = ".\mydata.txt"
@@ -41,12 +42,12 @@ $Content = Get-Content $FilePath
 
 
 #region Main Logic
-$Content
+$Output = @($Content)
 #endregion
 
 
 #region Output
-# Optional
+Write-Host $Output -ForegroundColor Green
 #endregion
 
 
