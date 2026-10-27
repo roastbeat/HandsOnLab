@@ -14,6 +14,7 @@
 # -----------------------------------------------------
 
 #Requires -Version 7.0
+
 <#
 .SYNOPSIS
 Writes content from file into an object.
@@ -40,15 +41,10 @@ if ( -not (Test-Path $FilePath)) {
 $Content = Get-Content $FilePath
 #endregion
 
-
 #region Main Logic
 $Output = @($Content)
 #endregion
 
-
 #region Output
 Write-Host $Output -ForegroundColor Green
 #endregion
-
-
-
