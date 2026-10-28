@@ -72,7 +72,7 @@ function Write-Result {
 #endregion
 
 #region Testing
-# File hash will only produce valid result under windows. This is caused by the new line codes that differ from the unix ones.
+# As soon as the text file contains new line symbols, the file will no longer get valid under Linux, text content was written in Windows!
 $Value = Get-FileValidation -SourcePath .\mydata.txt -Algorithm SHA256 -SourceHash "E48FCFCE8DFE07D5AA94209E73AE60B3B0BC32DA2C9EEB07098A9EA15BBE828C"
 Write-Result -Result $Value
 #endregion
