@@ -72,6 +72,7 @@ function Write-Result {
 #endregion
 
 #region Testing
-$Value = Get-FileValidation -SourcePath .\mydata.txt -Algorithm SHA256 -SourceHash "E7857E67A1C5255932BDB4560CE2835C12291E5AB66C30C6BF3421647D9E68B7"
+# File hash will only produce valid result under windows. This is caused by the new line codes that differ from the unix ones.
+$Value = Get-FileValidation -SourcePath .\mydata.txt -Algorithm SHA256 -SourceHash "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
 Write-Result -Result $Value
 #endregion
