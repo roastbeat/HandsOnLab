@@ -23,6 +23,8 @@ Takes a source path, the algorithm and the source hash as argument and checks if
 The function writes the result to the console.
 #>
 
+#Requires -Version 7.0
+
 Set-StrictMode -Version Latest
 
 # Shows all system messages in English
