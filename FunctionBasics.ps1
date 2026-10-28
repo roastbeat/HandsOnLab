@@ -1,16 +1,75 @@
 # Hands-On Lab: Replace Copy-Paste with a function
-# Outcome: 
+# Outcome: Wrap a repeated logic in a function that behaves 
+# like a first-class PowerShell command.
 #
-# 1. 
-# 2. 
-# 3. 
-# 4. 
+# 1. Choose a repeated task such as formatting timestamps 
+#    or checking file existence.
+# 2. Put it in a Verb-Noun function with [CmdletBinding()].
+# 3. Return structured output instead of mixing data with status text.
+# 4. Call the function directly and through the pipeline if appropriate.
 #
-# Success check: 
+# Success check: You can point to one concrete place where a function
+# made later changes easier.
 #
 # (c) Learn PowerShell Version 1.0.9 Offline Course App
 
 # -----------------------------------------------------
 
+<#
+.SYNOPSIS
+Validates any file hash and writes the result to the console
+.DESCRIPTION
+Takes a source path, the algorithm and the source hash as argument and checks if the hashes are equal.
+The function writes the result to the console.
+#>
+
+Set-StrictMode -Version Latest
+
 # Shows all system messages in English
 [System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
+
+#region Hash Check
+function Get-FileValidation  {
+    [CmdletBinding()]
+    param(
+        [string]$SourcePath,
+        [string]$Algorithm,
+        [string]$SourceHash
+    )
+
+    $Result = $false
+
+    try {
+        $FileHash = Get-FileHash -Algorithm $Algorithm -Path $SourcePath -ErrorAction Stop
+        $Result = $FileHash.Hash.ToLower() -eq $SourceHash.ToLower()
+        return $Result
+    }
+    catch {
+         Write-Host "An error occured: $($_.Exception.Message)"
+    } 
+}
+#endregion
+
+#region Output Creation
+function Write-Result {
+    [CmdletBinding()]
+    param(
+        [bool]$Result
+    )
+    
+    if ($Result){
+        Write-Host "+$('-' * 12)+" -ForegroundColor Green
+        Write-Host "| File valid |" -ForegroundColor Green
+        Write-Host "+$('-' * 12)+" -ForegroundColor Green
+    } else {
+        Write-Host "+$('-' * 14)+" -ForegroundColor Red
+        Write-Host "| File corrupt |" -ForegroundColor Red
+        Write-Host "+$('-' * 14)+" -ForegroundColor Red
+    }
+}
+#endregion
+
+#region Testing
+$Value = Get-FileValidation -SourcePath .\mydata.txt -Algorithm SHA256 -SourceHash "E7857E67A1C5255932BDB4560CE2835C12291E5AB66C30C6BF3421647D9E68B7"
+Write-Result -Result $Value
+#endregion
