@@ -34,8 +34,13 @@ Set-StrictMode -Version Latest
 function Get-FileValidation  {
     [CmdletBinding()]
     param(
+        [Parameter(Mandatory, HelpMessage="Enter path to file")]
         [string]$SourcePath,
-        [string]$Algorithm,
+
+        [Parameter(HelpMessage="Enter hash algorithm (default is SHA256)")]
+        [string]$Algorithm = "SHA256",
+
+        [Parameter(Mandatory, HelpMessage="Enter hash value from vendor")]
         [string]$SourceHash
     )
 
