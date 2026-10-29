@@ -15,16 +15,13 @@
 
 <#
 .SYNOPSIS
-    A short one-line action-based description, e.g. 'Tests if a function is valid'
+    Converts all words from word list to lowercase
 .DESCRIPTION
-    A longer description of the function, its purpose, common use cases, etc.
+    Takes a word list as input and converts content to lowercase
 .NOTES
-    Information or caveats about the function e.g. 'This function is not supported in Linux'
-.LINK
-    Specify a URI to a help page, this will show when Get-Help -Online is used.
+    This function is just for learning purposes.
 .EXAMPLE
-    ".\myfile" | Get-FileSize
-    Explanation of the function or its result. You can include multiple examples with additional .EXAMPLE lines
+    ".\myWordList.txt" | Get-LowerCase
 #>
 
 #Requires -Version 7.0
