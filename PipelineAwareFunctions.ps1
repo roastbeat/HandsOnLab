@@ -12,3 +12,38 @@
 # (c) Learn PowerShell Version 1.0.9 Offline Course App
 
 # -----------------------------------------------------
+
+<#
+.SYNOPSIS
+    #TODO
+.DESCRIPTION
+    #TODO
+.NOTES
+    #TODO
+.EXAMPLE
+    #TODO
+#>
+
+#Requires -Version 7.0
+
+Set-StrictMode -Version Latest
+
+# Shows all system messages in English
+[System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
+
+function Invoke-InputStream {
+  [CmdletBinding()]
+  param(
+    [parameter(ValueFromPipeline)]$Value
+  )
+
+  begin {
+    
+  }
+  process {
+    
+  }
+  end {
+    
+  }
+}
