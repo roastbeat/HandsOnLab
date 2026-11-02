@@ -16,7 +16,7 @@
 # Shows all system messages in English
 [System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
 
-$FilePath = ".\mydata.txt"
+$FilePath = ".\mylist.txt"
 
 if (-not (Test-Path $FilePath)) {
     Write-Warning "Path does not exist, try again"
