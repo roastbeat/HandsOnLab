@@ -42,14 +42,24 @@ function Invoke-WordCount {
     Write-Host "Starting process"
   }
   process {
-    Write-Host "Counting..."
+    # Write-Host "Counting..."
     $Words = $Text -split (' ')
     $Total += $Words.Count
+
+    [PSCustomObject]@{
+      Text = $Text
+      WordCount = $Total
+    }
   }
+
   end {
     Write-Host "Total word count: $($Total)"
-    Write-Host "Return code 0"
   }
 }
 
-"Hello World, it's Monday again" | Invoke-WordCount
+$TextA = "Hello World, it's Monday again"
+$TextB = "Yey, it's afternoon, finally!"
+
+$TextA | Invoke-WordCount 
+
+Invoke-WordCount $TextB 
