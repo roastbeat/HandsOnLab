@@ -48,11 +48,13 @@ function Get-LowerCase {
 
 #region Main Logic
 try {
-    $WordList = Get-Content ".\myList.txt" -ErrorAction Stop
+    # $WordList = Get-Content ".\myList.txt" -ErrorAction Stop
 
-    foreach ($Word in $WordList) {
-        $Word | Get-LowerCase
-    }
+    (Get-Content ".\myList.txt" -ErrorAction Stop) | ForEach-Object { $_ | Get-LowerCase}
+
+    # foreach ($Word in $WordList) {
+    #     $Word | Get-LowerCase
+    # }
 }
 catch {
     Write-Error "$($_.Exception.Message)"
