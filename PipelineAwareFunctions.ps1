@@ -31,19 +31,25 @@ Set-StrictMode -Version Latest
 # Shows all system messages in English
 [System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
 
-function Invoke-InputStream {
+function Invoke-WordCount {
   [CmdletBinding()]
   param(
-    [parameter(ValueFromPipeline)]$Value
+    [parameter(ValueFromPipeline)]$Text
   )
 
   begin {
-    
+    [int]$Total = 0
+    Write-Host "Starting process"
   }
   process {
-    
+    Write-Host "Counting..."
+    $Words = $Text -split (' ')
+    $Total += $Words.Count
   }
   end {
-    
+    Write-Host "Total word count: $($Total)"
+    Write-Host "Return code 0"
   }
 }
+
+"Hello World, it's Monday again" | Invoke-WordCount
