@@ -15,13 +15,13 @@
 
 <#
 .SYNOPSIS
-    Converts all words from word list to lowercase
+    # TODO
 .DESCRIPTION
-    Takes a word list as input and converts content to lowercase
+    # TODO
 .NOTES
-    This function is just for learning purposes.
+    # TODO
 .EXAMPLE
-    ".\myWordList.txt" | Get-LowerCase
+    # TODO
 #>
 
 #Requires -Version 7.0
