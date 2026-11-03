@@ -31,3 +31,37 @@ Set-StrictMode -Version Latest
 # Shows all system messages in English
 [System.Threading.Thread]::CurrentThread.CurrentUICulture = 'en-US'
 
+$LocalVar = "Local"
+
+function Test-Scope {
+    Write-Host "'$LocalVar' gets inherited from outside of function"
+
+    # Next variable is only known locally in this function:
+    # $FunctionVar = "Function"
+    # Write-Host $FunctionVar
+
+    $Script:shared = "Shared"
+}
+
+Test-Scope 
+
+# Does not work, variable is only known locally in the function:
+# Wite-Host $FunctionVar
+
+Write-Host "'$Script:shared' is visible outside of function"
+
+<#
+    Reusable Patterns
+#>
+
+$Greet = { param($Name) "Hello, $Name"}
+
+& $Greet "Alice"
+
+$Actions = @{ 
+    Start = { Start-Process $args[0] }
+}
+
+& $Actions.Start "firefox"
+Pause
+Get-Process | ForEach-Object { if ($_.Name -eq "firefox") { Stop-Process $_ } }
